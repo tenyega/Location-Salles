@@ -1,0 +1,14 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Modifier un logiciel{% endblock %}
+
+{% block body %}
+    <h1 id="h1">Modifier un logiciel</h1>
+<div id ="c" >
+    {{ include('back/_form.html.twig', {'button_label': 'Modifier'}) }}
+</div>
+<div id="c"><a href="{{ path('back_software_softwareShow') }}">Retours</a></div>
+
+    {{ include('back/software/_delete_software.html.twig') }}
+
+{% endblock %}

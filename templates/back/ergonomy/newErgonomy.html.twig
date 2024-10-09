@@ -1,0 +1,11 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Nouvelle Ergonomie{% endblock %}
+
+{% block body %}
+    <h1 id="h1">Crée une nouvelle Ergonomie</h1>
+
+    {{ include('back/_form.html.twig') }}
+
+    <a href="{{ path ('back_halltable_gestiontable') }}">Retour</a>
+{% endblock %}

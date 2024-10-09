@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}SALLE LOCATION{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div>
+            <h1 id="h1">BIENVENUE DANS NOTRE SALLE LOCATION SYSTEM</h1>
+            <h3 id="h3"><a href="{{ path ('back_home') }}"> HOME   </a>&#160&#160
+                        <a href="{{ path ('back_search') }}"> RECHERCHE   </a>&#160&#160
+                        <a href="{{ path ('back_halltable_gestiontable') }}" >GESTION DES TABLE</a>&#160&#160 
+                        <a href="{{ path ('back_hall_index') }}" >SALLES DISPONIBLE </a>&#160&#160
+                        <a href="{{ path ('back_reservation_reservation') }}">RESERVATIONS</a>&#160&#160
+                        <a href="{{ path ('front_user') }}"> SITE   </a>&#160&#160
+                        {% if is_granted('ROLE_BACK_ADMIN') %}
+                        <a href ="{{ path ('back_app_logout') }}" class="red">DECONNEXION</a>&#160&#160
+                        {% endif %}
+
+            </h3>
+        </div>
+     
+        {% block body %}
+      
+        {% endblock %}
+    </body>
+</html>
+
+
+
+
+

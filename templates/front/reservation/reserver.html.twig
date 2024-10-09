@@ -1,0 +1,64 @@
+{% extends 'front/front_base.html.twig' %}
+
+{% block body %}
+<h2 id="h2">RESERVER!!!</h2>
+<div>
+    <table class="table" style="float: left">
+        <tbody>
+            <tr>
+                <th>NOM</th>
+                <td>{{ hall.name }}</td>
+            </tr>
+            <tr>
+                <th>EMPLACEMENT</th>
+                <td>{{ hall.location }}</td>
+            </tr>
+            <tr>
+                <th>CAPACITE</th>
+                <td>{{ hall.capacity }}</td>
+            </tr>
+            <tr>
+                <th>MATERIAL</th>
+                <td>
+                    {% for material in  hall.getMaterial() %}
+                    {{ material.name}}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>ERGONOMIE</th>
+                <td>
+                    {% for ergonomy in  hall.getErgonomy() %}
+                    {{ ergonomy.name}}<br>
+                    {% endfor %}
+                </td>   
+            </tr>
+            <tr>
+                <th>LOGICIEL</th>
+                <td>
+                    {% for software in  hall.getSoftware() %}
+                    {{ software.name}}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>AMENAGEMENT</th>
+                <td>
+                
+                {{ hall.arrangement.name }}
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div style="float: left">
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.startdate, {'label': 'Date de Debut'}) }}
+    {{ form_row(form.enddate,{'label': 'Date de Fin'}) }}
+     
+<button id="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+</div>
+{% endblock %}

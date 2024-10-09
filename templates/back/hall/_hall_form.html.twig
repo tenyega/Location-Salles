@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    {{ form_row(form.name, {'label' : 'Nom' }) }}
+    {{ form_row(form.location, {'label' : 'Emplacement'})}}
+    {{ form_row(form.capacity, {'label' : 'Capacité'})}}
+    {{ form_row(form.ergonomy, {'label' : 'Ergonomie'})}}
+    {{ form_row(form.material, {'label' : 'Matériel'})}}
+    {{ form_row(form.software, {'label' : 'Logiciel'})}}
+    {{ form_row(form.arrangement, {'label' : 'Amenagement'})}}
+
+    <button id="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

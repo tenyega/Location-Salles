@@ -1,0 +1,15 @@
+back: 
+  resource: ../src/Controller/Back
+  type: annotation
+  name_prefix: back_
+  prefix: /back
+
+front: 
+  resource: ../src/Controller/Front/
+  type: annotation
+  name_prefix: front_
+  prefix: /
+
+# fm_elfinder:
+#   resource: "@FMELfinderBundle/Resources/config/routing.yml"
+#   prefix: /back

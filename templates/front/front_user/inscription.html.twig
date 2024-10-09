@@ -1,0 +1,21 @@
+{% extends 'front/front_base.html.twig' %}
+
+{% block body %}
+<h2 id="h2">INSCRIPTION PAGE!!!</h2>
+{% if form is defined %}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row( form.email) }}
+    {{ form_row(form.password)  }}    
+   
+
+    <button id="btn" name="submit-button">INSCIPTION</button>
+   
+{{ form_end(form) }}
+{% endif %}
+   
+
+   
+{% endblock %}

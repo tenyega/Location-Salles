@@ -1,0 +1,74 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}SALLE LOCATION {% endblock %}
+
+{% block body %}
+    <h1 id="h1">RESERVATIONS</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                
+                <th>SALLE</th>
+                <th>EMPLACEMENT DE SALLE</th>
+
+                <th>DATE DE DEBUT</th>
+                <th>DATE DE FIN</th>
+
+                <th>CLIENT</th>
+                <th>STATUS</th>
+
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr class=" {% if  reservation.status == 'V' %} v
+            {% elseif  reservation.status == 'P'  %}p
+            {% else %}a
+            {% endif %} " >
+                <td>{{ reservation.id }}</td>
+
+                <td>{{ reservation.hall.name }}</td>
+                <td>{{ reservation.hall.location }}</td>
+
+                <td>{{ reservation.startdate | date('d/m/Y H:i:s') }}</td>
+                <td>{{ reservation.enddate | date('d/m/Y H:i:s') }}</td>
+
+                <td>{{ reservation.frontuser.firstname }}
+                    {{ reservation.frontuser.lastname | upper  }}</td>
+
+                <td>{% if  reservation.status == "V" %} Validé
+                    {% elseif  reservation.status == "P"  %} En Attente 
+                    {% else %} Annulé
+                    {% endif %}
+
+                </td> 
+
+                <td>
+                    {% if  reservation.status == "V" %}
+                    <a href="{{ path('back_reservation_voir', {'id': reservation.id}) }}">Voir</a>
+                    <a href="{{ path('back_reservation_modifier', {'id': reservation.id}) }}">Modifier</a>
+                    {{ include('back/reservation/effacer.html.twig') }}       
+                     {% elseif  reservation.status == "P"  %}
+                    <a href="{{ path('back_reservation_valider', {'id': reservation.id}) }}">Valider</a>
+                    <a href="{{ path('back_reservation_annuler', {'id': reservation.id}) }}">Annuler</a>
+                    {{ include('back/reservation/effacer.html.twig') }}        
+                    {% else %}
+                    <a href="{{ path('back_reservation_voir', {'id': reservation.id}) }}">Voir</a>
+                    <a href="{{ path('back_reservation_modifier', {'id': reservation.id}) }}">Modifier</a>
+                    {{ include('back/reservation/effacer.html.twig') }}        
+                    {% endif %}
+                </td>
+              
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">PAS DE DONNEE TROUVE</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Modifier un amenagement{% endblock %}
+
+{% block body %}
+    <h1 id="h1">Modifier un amenagement</h1>
+<div id ="c" >
+    {{ include('back/_form.html.twig', {'button_label': 'Modifier'}) }}
+</div>
+<div id="c"><a href="{{ path('back_arrangement_arrangementShow') }}">Retours</a></div>
+
+    {{ include('back/arrangement/_delete_arrangement.html.twig') }}
+
+{% endblock %}

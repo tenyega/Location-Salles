@@ -1,0 +1,48 @@
+{% extends 'front/front_base.html.twig' %}
+
+{% block title %}Modifer Reservation{% endblock %}
+
+{% block body %}
+<h1 id="h1">Modifer Reservation</h1>
+<div>
+    <table class="table"  >
+        <tbody>
+            <tr>
+                <th>Salle</th>
+                <th>Emplacement de la Salle</th>
+                <th>Capacité de la Salle</th>
+                <th>Date de Debut </th>
+                <th>Date de Fin </th>
+                <th>Reservé Par</th>
+                <th>Status</th>
+            </tr>
+            <tr  class=" {% if  reservation.status == 'V' %} v
+            {% elseif  reservation.status == 'P'  %}p
+            {% else %}a
+            {% endif %} ">
+                <td>{{ reservation.hall.name }}</td>
+                <td>{{ reservation.hall.location }}</td>
+                <td>{{ reservation.hall.capacity }}</td>
+                <td>{{ reservation.startdate | date('d/m/Y H:i:s') }}</td>
+                <td>{{ reservation.enddate | date('d/m/Y H:i:s') }}</td>
+                <td>{{ reservation.frontuser.firstname }}
+                    {{ reservation.frontuser.lastname | upper }}
+                </td>
+                <td>{% if  reservation.status == "V" %} Validé
+                    {% elseif  reservation.status == "P"  %} En Attente 
+                    {% else %} Annulé
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+ <br/><br/>
+</div>
+<div class='margin'>
+    {{ include('back/_form.html.twig', {'button_label': 'Modifier'}) }}
+</div>
+<div id="c"><a href="{{ path('front_user_mesreservation') }}">Retour</a></div>
+
+    {{ include('front/reservation/effacer.html.twig') }}
+
+{% endblock %}

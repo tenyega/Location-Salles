@@ -1,0 +1,14 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Modifer Reservation{% endblock %}
+
+{% block body %}
+    <h1 id="h1">Modifer Reservation</h1>
+<div id ="c" >
+    {{ include('back/_form.html.twig', {'button_label': 'Modifier'}) }}
+</div>
+<div id="c"><a href="{{ path('back_reservation_reservation') }}">Retour</a></div>
+
+    {{ include('back/reservation/effacer.html.twig') }}
+
+{% endblock %}

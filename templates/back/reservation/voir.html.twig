@@ -1,0 +1,54 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}RESERVATION DETAILS {% endblock %}
+
+{% block body %}
+    <h1 id="h1">RESERVATION</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>Salle</th>
+                <td>{{ reservation.hall.name }}</td>
+            </tr>
+            <tr>
+                <th>Emplacement de la Salle</th>
+                <td>{{ reservation.hall.location }}</td>
+            </tr>
+            <tr>
+                <th>Capacité de la Salle</th>
+                <td>{{ reservation.hall.capacity }}</td>
+            </tr>
+            <tr>
+                <th>Date de Debut </th>
+                <td>{{ reservation.startdate | date('d/m/Y H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Date de Fin </th>
+                <td>{{ reservation.enddate | date('d/m/Y H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Reservé Par</th>
+                <td>{{ reservation.frontuser.firstname }}
+                    {{ reservation.frontuser.lastname | upper }}
+                </td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{% if  reservation.status == "V" %} Validé
+                    {% elseif  reservation.status == "P"  %} En Attente 
+                    {% else %} Annulé
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+ <div id="c"><a href="{{ path('back_reservation_reservation') }}">back to list</a>
+
+</div>
+{% endblock %}

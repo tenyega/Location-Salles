@@ -1,0 +1,52 @@
+{% extends 'front/front_base.html.twig' %}
+
+{% block body %}
+<div>
+    <h2 id='h2'>SALLE DISPONIBLE </h2>
+    <table class="table">
+        <tr>
+            <th> NOM</th>
+            <th> EMPLACEMENT</th>
+            <th>CAPACITE</th>
+
+            <th>MATERIEL</th>
+            <th>ERGONOMIE</th>
+            <th>LOGICIEL</th>
+            <th>AMENAGEMENT</th>
+            <th></th>
+
+
+        </tr>
+        {% for hall in halls %}
+        <tr>
+            <td id='td'>{{hall.name}}</td>
+            <td>{{hall.location}}</td>
+
+            <td>{{hall.capacity}}</td>
+
+            <td>
+                {% for material in  hall.getMaterial() %}
+                {{ material.name}}<br>
+
+                {% endfor %}
+            </td>
+            <td>
+                {% for ergonomy in  hall.getErgonomy() %}
+                 {{ ergonomy.name}}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for software in  hall.getSoftware() %}
+                 {{ software.name}}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {{ hall.arrangement.name }}
+            </td>
+            <td><a href="{{ path ('front_user_reserver', {'id': hall.id }) }}"> RESERVER </a></td>
+
+        {% endfor %}
+        </tr>
+    </table>
+</div>
+{% endblock %}

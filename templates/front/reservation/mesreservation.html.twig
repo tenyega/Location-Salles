@@ -1,0 +1,51 @@
+{% extends 'front/front_base.html.twig' %}
+
+{% block body %}
+<h2 id="h2">MES RESERVATIONS !!!</h2>
+ <div>
+    {% for reservation in mesreservations %}
+    <div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Salle</th>
+                    <th>Emplacement de la Salle</th>
+                    <th>Capacité de la Salle</th>
+                    <th>Date de Debut </th>
+                    <th>Date de Fin </th>
+                    <th>Reservé Par</th>
+                    <th>Status</th>
+                    <th>Action </th>
+                </tr>
+                <tr  class=" {% if  reservation.status == 'V' %} v
+                {% elseif  reservation.status == 'P'  %}p
+                {% else %}a
+                {% endif %} ">
+                    <td>{{ reservation.hall.name }}</td>
+                    <td>{{ reservation.hall.location }}</td>
+                    <td>{{ reservation.hall.capacity }}</td>
+                    <td>{{ reservation.startdate | date('d/m/Y H:i:s') }}</td>
+                    <td>{{ reservation.enddate | date('d/m/Y H:i:s') }}</td>
+                    <td>{{ reservation.frontuser.firstname }}
+                        {{ reservation.frontuser.lastname | upper }}
+                    </td>
+                    <td>{% if  reservation.status == "V" %} Validé
+                        {% elseif  reservation.status == "P"  %} En Attente 
+                        {% else %} Annulé
+                        {% endif %}
+                    </td>
+                    <td><a href="{{ path ('front_user_modify', {'id': reservation.id}) }}"> MODIFIER </a> &nbsp
+                    {% if reservation.status != 'A' %} <a href="{{ path ('front_user_annuler', {'id' : reservation.id}) }}"> ANNULER </a> {% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+     <br/><br/>
+    </div>
+        {% else %}
+       
+            <h2 id ='c'>PAS DE RESERVATIONS TROUVE</h2>
+        
+    {% endfor %}
+
+</div>
+{% endblock %}

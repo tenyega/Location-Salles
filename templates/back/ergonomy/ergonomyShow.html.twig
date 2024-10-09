@@ -1,0 +1,38 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}GESTION DE TABLE  {% endblock %}
+
+{% block body %}
+    <h1 id="h1">GESTION DE TABLE - ERGONOMIE</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOM</th>
+                           
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ergonomy in ergonomys %}
+            <tr>
+                <td>{{ ergonomy.id }}</td>
+                <td>{{ ergonomy.name }}</td>
+               
+                <td>
+                    <a href="{{ path('back_ergonomy_editErgonomy', {'id' : ergonomy.id }) }}">MODIFIER</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">PAS DE DONNEE TROUVE</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div id="c"><a href="{{ path('back_ergonomy_newErgonomy')}}">AJOUTER ERGONOMIE</a></div>
+    <div id="c"><a href="{{ path('back_halltable_gestiontable') }}">Retour</a></div>
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Modifier un Materiel{% endblock %}
+
+{% block body %}
+    <h1 id="h1">Modifier un Materiel</h1>
+<div id ="c" >
+    {{ include('back/_form.html.twig', {'button_label': 'Modifier'}) }}
+</div>
+<div id="c"><a href="{{ path('back_material_materialShow') }}">Retours</a></div>
+
+    {{ include('back/material/_delete_materiel.html.twig') }}
+
+{% endblock %}

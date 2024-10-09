@@ -1,0 +1,66 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}SALLE LOCATION {% endblock %}
+
+{% block body %}
+<div>
+    <h1 id="h1">SALLE</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOM</th>
+                <th>EMPLACEMENT</th>
+                <th>CAPACITE</th>
+                <th>MATERIAL</th>
+                <th>ERGONOMIE</th>
+                <th>LOGICIEL</th>
+                <th>AMENAGEMENT</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hall in halls %}
+            <tr>
+                <td>{{ hall.id }}</td>
+                <td>{{ hall.name }}</td>
+                <td>{{ hall.location }}</td>
+                <td>{{ hall.capacity }}</td>
+                <td>
+                    {% for material in  hall.getMaterial() %}
+                    {{ material.name}}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for ergonomy in  hall.getErgonomy() %}
+                     {{ ergonomy.name}}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for software in  hall.getSoftware() %}
+                     {{ software.name}}<br>
+                    {% endfor %}
+                </td>
+    
+                <td>
+                    
+                    {{ hall.arrangement.name }}
+
+                </td>
+                <td>
+                    <a href="{{ path('back_hall_show', {'id': hall.id}) }}">VOIR</a>
+                    <a href="{{ path('back_hall_edit', {'id': hall.id}) }}">MODIFIER</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">PAS DE DONNEE TROUVE</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div id="c"><a href="{{ path('back_hall_new') }}">AJOUTER UNE SALLE</a></div>
+
+{% endblock %}

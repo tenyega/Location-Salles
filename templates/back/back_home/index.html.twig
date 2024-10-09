@@ -1,0 +1,63 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}SALLE LOCATION {% endblock %}
+
+{% block body %}
+<div>
+    {% if reservationAlerts %} <h2 class="alert">VOUS AVEZ DES RESERVATION A VALIDER EN URGENCE !!! </h2>
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    
+                    <th>SALLE</th>
+                    <th>EMPLACEMENT DE SALLE</th>
+    
+                    <th>DATE DE DEBUT</th>
+                    <th>DATE DE FIN</th>
+    
+                    <th>CLIENT</th>
+                    <th>STATUS</th>
+    
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for reservationAlert in reservationAlerts %}
+                <tr class=" {% if  reservationAlert.status == 'V' %} v
+                {% elseif  reservationAlert.status == 'P'  %}p
+                {% else %}a
+                {% endif %} " >
+                    <td>{{ reservationAlert.id }}</td>
+    
+                    <td>{{ reservationAlert.hall.name }}</td>
+                    <td>{{ reservationAlert.hall.location }}</td>
+    
+                    <td>{{ reservationAlert.startdate | date('d/m/Y H:i:s') }}</td>
+                    <td>{{ reservationAlert.enddate | date('d/m/Y H:i:s') }}</td>
+    
+                    <td>{{ reservationAlert.frontuser.firstname }}
+                        {{ reservationAlert.frontuser.lastname | upper  }}</td>
+    
+                    <td>{% if  reservationAlert.status == "V" %} Validé
+                        {% elseif  reservationAlert.status == "P"  %} En Attente 
+                        {% else %} Annulé
+                        {% endif %}
+    
+                    </td> 
+                    <td>   
+                        <a href="{{ path('back_home_valider', {'id': reservationAlert.id}) }}">Valider</a>
+                        <a href="{{ path('back_home_annuler', {'id': reservationAlert.id}) }}">Annuler</a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    
+    </table>
+    {% else %}
+        <h2 id= 'c'> Vous n'avez pas des reservation urgence en attente!!!</h2>
+{% endif %}
+
+{% endblock %}

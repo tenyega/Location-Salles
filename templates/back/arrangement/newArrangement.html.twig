@@ -1,0 +1,11 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Nouveau Amenagement{% endblock %}
+
+{% block body %}
+    <h1 id="h1">Crée un nouveau Amenagement</h1>
+
+    {{ include('back/_form.html.twig') }}
+
+    <a href="{{ path ('back_halltable_gestiontable') }}">Retour</a>
+{% endblock %}

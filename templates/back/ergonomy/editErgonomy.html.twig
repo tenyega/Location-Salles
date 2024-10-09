@@ -1,0 +1,14 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Modifier une Ergonomy{% endblock %}
+
+{% block body %}
+    <h1 id="h1">Modifier un Ergonomy</h1>
+<div id ="c" >
+    {{ include('back/_form.html.twig', {'button_label': 'Modifier'}) }}
+</div>
+<div id="c"><a href="{{ path('back_ergonomy_ergonomyShow') }}">Retours</a></div>
+
+    {{ include('back/ergonomy/_delete_ergonomy.html.twig') }}
+
+{% endblock %}

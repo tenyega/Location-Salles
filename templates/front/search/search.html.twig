@@ -1,0 +1,65 @@
+{% extends 'front/front_base.html.twig' %}
+
+{% block title %}SEARCH {% endblock %}
+
+{% block body %}
+    <h1 id="h1">Recherche d'une salle</h1>
+    
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.Capacity, {'label': 'Capacité'}) }}
+    {{ form_row(form.Material,{'label': 'Materiel'}) }}
+    {{ form_row(form.Software,{'label': 'Logiciel'}) }}
+    {{ form_row(form.Ergonomy,{'label': 'Ergonomie'}) }}
+
+
+    <button id="btn">{{ button_label|default('Rechercher') }}</button>
+{{ form_end(form) }}
+
+{% if datas %}
+<table class="table">
+    <tbody>
+       {% for data in datas %}
+       <tr>
+        <th>SALLE</th>
+        <td>{{data.getName()   }}</td>
+        </tr>  
+        <tr>
+            <th>Salle Emplacement</th>
+            <td>{{data.getLocation()  }}</td>
+            </tr>  
+        <tr>
+            <th>Capacité</th>
+            <td>{{ data.Capacity}}</td>
+        </tr>
+        <tr>
+            <th>Materiel</th>
+            <td>{% for material in data.Material  %}{{material}}{{ ' |'|raw }} {% endfor %}&nbsp;</td>
+        </tr>
+        <tr>
+            <th>Logiciel</th>
+            <td>{% for software in data.Software  %}{{ software }}{{ ' |'|raw }} {% endfor %}&nbsp;</td>
+        </tr>
+        <tr>
+            <th>Ergonomie</th>
+            <td>{% for ergonomy in data.Ergonomy  %}{{ergonomy}}{{ ' |'|raw }} {% endfor %}&nbsp;</td>
+        </tr>
+        <tr>
+            <th>Amenagement</th>
+            <td>{{data.Arrangement     }}</td>
+        </tr>
+       
+        <tr>
+            <th></th>
+            <td><a href="{{ path ('front_user_reserver', {'id': data.getId()}) }}"> RESERVER </a> </td>
+        </tr>
+        <tr>&nbsp;<br/><td></td><td></td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+    <a href="{{ path('front_user') }}">Retour</a>
+{% endblock %}
+

@@ -1,0 +1,58 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}GESTION DES TABLES {% endblock %}
+
+{% block body %}
+    <h1 id="h1">TABLE</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NOM DE TABLE</th>
+              
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SALLE</td>
+                <td>
+                    <a href="{{ path('back_halltable_hallShow') }}">VOIR</a>
+                    <a href="{{ path('back_hall_new') }}">AJOUTER</a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>AMENAGEMENT</td>
+                <td>
+                    <a href="{{ path('back_arrangement_arrangementShow')}}">VOIR</a>
+                    <a href="{{ path('back_arrangement_newArrangement')}}">AJOUTER</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ERGONOMIE</td>
+                <td>
+                    <a href="{{ path('back_ergonomy_ergonomyShow')}}">VOIR</a>
+                    <a href="{{ path('back_ergonomy_newErgonomy')}}">AJOUTER</a>
+                </td>
+            </tr>
+            <tr>
+                <td>MATERIEL</td>
+                <td>
+                    <a href="{{ path('back_material_materialShow')}}">VOIR</a>
+                    <a href="{{ path('back_material_newMaterial')}}">AJOUTER</a>
+                </td>
+            </tr>
+            <tr>
+                <td>LOGICIEL</td>
+                <td>
+                    <a href="{{ path('back_software_softwareShow')}}">VOIR</a>
+                    <a href="{{ path('back_software_newSoftware')}}">AJOUTER</a>
+                </td>
+            </tr>
+           
+       
+        </tbody>
+    </table>
+
+{% endblock %}
